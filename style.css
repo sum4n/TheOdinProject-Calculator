@@ -1,6 +1,3 @@
-/* 
-main-frame, display, buttons
-*/
 
 body {
     display: flex;
@@ -19,10 +16,17 @@ body {
     align-items: center;
 }
 
-#display {
+.display {
     border: 1px solid coral;
     height: 40px;
     width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#display1 {
+    font-size: large;
 }
 
 #buttons {
@@ -34,58 +38,29 @@ body {
     column-gap: 15px;
 }
 
-#buttons1 {
+#btn-numbers {
     /* border: 1px solid mediumseagreen; */
-    /* height: 250px;
-    width: 300px; */
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     column-gap: 5px;
     
 }
 
-#buttons2 {
+#btn-operators {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
-#buttons3 {
-    /* border: 1px solid blue; */
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-}
 
 button {
     height: 30px;
     width: 40px;
-    /* flex-grow: 1; */
 }
 
 
 
-.btn-grp4 {
-    /* border: 1px solid black; */
-    display: flex;
-    width: 130px;
-    /* justify-content: space-between; */
-    column-gap: 7px;
-    /* flex: 1; */
-}
 
-#equals {
-    /* flex-grow: 4; */
-    row-gap: 5px;
-    flex: 1;
-}
-
-#display{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
