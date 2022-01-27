@@ -1,0 +1,91 @@
+/* 
+main-frame, display, buttons
+*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-frame {
+    border: 8px solid blueviolet;
+    height: 350px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#display {
+    border: 1px solid coral;
+    height: 40px;
+    width: 300px;
+}
+
+#buttons {
+    border: 1px solid black;
+    height: 250px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+}
+
+#buttons1 {
+    /* border: 1px solid mediumseagreen; */
+    /* height: 250px;
+    width: 300px; */
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    justify-content: space-evenly;
+    align-items: center;
+    column-gap: 5px;
+    
+}
+
+#buttons2 {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#buttons3 {
+    /* border: 1px solid blue; */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+button {
+    height: 30px;
+    width: 40px;
+    /* flex-grow: 1; */
+}
+
+
+
+.btn-grp4 {
+    /* border: 1px solid black; */
+    display: flex;
+    width: 130px;
+    /* justify-content: space-between; */
+    column-gap: 7px;
+    /* flex: 1; */
+}
+
+#equals {
+    /* flex-grow: 4; */
+    row-gap: 5px;
+    flex: 1;
+}
+
+#display{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
