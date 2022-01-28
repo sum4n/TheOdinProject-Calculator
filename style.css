@@ -38,21 +38,43 @@ body {
     column-gap: 15px;
 }
 
-#btn-numbers {
+#btn-grp1 {
     /* border: 1px solid mediumseagreen; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    column-gap: 5px;
-    
+    column-gap: 5px;  
 }
 
-#btn-operators {
+#btn-buttom {
+    /* border: 1px solid black; */
+    display: flex;
+    column-gap: 6px;
+}
+
+#btn-grp2 {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.btn-operators {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.btn-equals {
+    /* display: flex; */
+    /* row-gap: 5px; */
+    /* column-gap: 5px; */
+    margin-bottom: 10px;
 }
 
 
