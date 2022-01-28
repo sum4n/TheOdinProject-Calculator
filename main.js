@@ -14,66 +14,92 @@ const divide = function(...args) {
     return args.reduce((total, arg) => total / arg);
 }
 
-
 const operate = function(operator, num1, num2) {
     return operator(num1, num2);
 }
 
 const buttons = document.querySelectorAll('button');
 const display1 = document.querySelector("#display1>p");
+const display2 = document.querySelector("#display2>p");
 
 const numButtons = document.querySelectorAll('.btn-numbers>button');
 const operateButtons = document.querySelectorAll('.btn-operators>button');
 const equalButton = document.querySelector('.btn-equals');
 
-let temp;
-let num1 = 0;
-let num2 = 0;
+const resetButton = document.querySelector("#btn-func>button");
+
+let num1 = '';
+let num2 = '';
 let operator;
 let clearDisplay = false;
 
-const display = function(btn) {
-    if(clearDisplay) {
-        num1 = 0;
-        num2 = 0;
-        display1.textContent = "";
-        clearDisplay = false;
-    }
-    console.log(btn.textContent);
-    display1.textContent += btn.textContent;
-}
-
 numButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        display(button);
+        display1.textContent += button.textContent;
+        
+        // click numbers after clicking "="
+        // if going for new calculation after clicking "="
+        if (clearDisplay && !(operator)) {
+            display1.textContent = '';
+            display2.textContent = '';
+            num1 = '';
+            display1.textContent += button.textContent;
+            clearDisplay = false;
+        }
+        
+        // click operator after clicking "="
+        // or chaining operators.
+        if (operator) {
+            num2 += button.textContent;
+            num1 = operate(operator, Number(num1), Number(num2));
+        } else {
+            num1 += button.textContent;
+        }
+        
+        
+        console.log("Num1: " + num1);
+        console.log("Num2: " + num2);
     });
 });
 
 operateButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log(button.textContent);
-        num1 += Number(display1.textContent);
+        display1.textContent += " " + button.textContent + " ";
 
-        if (button.textContent == '+') {
-            operator = add;
-        } else if (button.textContent == '-') {
-            operator = subtract;
-        } else if (button.textContent == '*') {
-            operator = multiply;
-        } else if (button.textContent == '/') {
-            operator = divide;
+        switch (button.textContent) {
+            case '+':
+                operator = add;
+                break;
+            case '-':
+                operator = subtract;
+                break;
+            case '*':
+                operator = multiply;
+                break;
+            case '/':
+                operator = divide;
+                break;
         }
 
-        display1.textContent = "";
+        num2 = '';
+        
     });
 });
 
-
 equalButton.addEventListener('click', () => {
-    num2 += Number(display1.textContent);
-
-    let result = operate(operator, num1, num2);
-    display1.textContent = result;
-    console.log(result);
+    display2.textContent = num1;
+    
+    operator = undefined;
     clearDisplay = true;
-})
+    // num1 = "";
+    num2 = "";
+});
+
+resetButton.addEventListener('click', () => {
+    display1.textContent = "";
+    display2.textContent = "";
+    num1 = "";
+    num2 = "";
+    operator = undefined;
+    clearDisplay = false;
+});
