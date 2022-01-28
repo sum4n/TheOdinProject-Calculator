@@ -30,8 +30,15 @@ let temp;
 let num1 = 0;
 let num2 = 0;
 let operator;
+let clearDisplay = false;
 
 const display = function(btn) {
+    if(clearDisplay) {
+        num1 = 0;
+        num2 = 0;
+        display1.textContent = "";
+        clearDisplay = false;
+    }
     console.log(btn.textContent);
     display1.textContent += btn.textContent;
 }
@@ -68,4 +75,5 @@ equalButton.addEventListener('click', () => {
     let result = operate(operator, num1, num2);
     display1.textContent = result;
     console.log(result);
+    clearDisplay = true;
 })
