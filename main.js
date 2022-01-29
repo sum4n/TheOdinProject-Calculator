@@ -81,6 +81,12 @@ numButtons.forEach((button) => {
 
 operateButtons.forEach((button) => {
     button.addEventListener('click', () => {
+
+        // If input is only '.', operate buttons wont work till
+        // valid input.
+        if (num1 == '.') {
+            return;
+        }
         dotButton.disabled = false;
 
         display1.textContent += " " + button.textContent + " ";
@@ -172,4 +178,5 @@ resetButton.addEventListener('click', () => {
     operator = undefined;
     clearDisplay = false;
     newCalc = false;
+    dotButton.disabled = false;
 });
