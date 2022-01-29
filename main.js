@@ -33,6 +33,7 @@ let num2 = '';
 let operator;
 let clearDisplay = false;
 let newCalc = false;
+let operatorSymbol;
 
 numButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -51,6 +52,8 @@ numButtons.forEach((button) => {
             // On new calculation operator gets reset, so that below
             // if else statement runs correctly.
             operator = undefined;
+
+            newCalc = false;
         }
         
         // Click operator after clicking "=" or chaining operators.
@@ -63,6 +66,7 @@ numButtons.forEach((button) => {
          
         console.log("Num1: " + num1);
         console.log("Num2: " + num2);
+        console.log(display1.textContent.length)
     });
 });
 
@@ -82,21 +86,30 @@ operateButtons.forEach((button) => {
             newCalc = false;
         } else if (operator && !newCalc) {
             num1 = operate(operator, Number(num1), Number(num2));
-            display2.textContent = num1;
+            if (num1 == Infinity || num1 == -Infinity) {
+                display2.textContent = "ERROR";
+            } else {
+                display2.textContent = num1;
+            } 
         }
+            
 
         switch (button.textContent) {
             case '+':
                 operator = add;
+                operatorSymbol = ' + ';
                 break;
             case '-':
                 operator = subtract;
+                operatorSymbol = ' - ';
                 break;
             case '*':
                 operator = multiply;
+                operatorSymbol = ' * ';
                 break;
             case '/':
                 operator = divide;
+                operatorSymbol = ' / ';
                 break;
         }
 
@@ -107,11 +120,26 @@ operateButtons.forEach((button) => {
 });
 
 equalButton.addEventListener('click', () => {
+    // If = is used without entering operator return num1.
+    if (!operator) {
+        display2.textContent = num1;
+        return;
+    }
+
+    // If = key repeat keep updating display1.
+    if (newCalc) {
+        display1.textContent += operatorSymbol + num2;
+    }
+
     // num1 gets the operate value to continue chain operations. and 
     // repeated "=" presses.
-    // display1.textContent = num1 + ' + ' + num2;
     num1 = operate(operator, Number(num1), Number(num2));
-    display2.textContent = num1;
+    if (num1 == Infinity || num1 == -Infinity) {
+        display2.textContent = "ERROR";
+    } else {
+        display2.textContent = num1;
+    }
+    // display2.textContent = num1;
     
     // this variables will effect how the numButtons' function run.
     newCalc = true;
@@ -131,4 +159,5 @@ resetButton.addEventListener('click', () => {
     num2 = "";
     operator = undefined;
     clearDisplay = false;
+    newCalc = false;
 });
