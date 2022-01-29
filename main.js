@@ -37,8 +37,8 @@ numButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display1.textContent += button.textContent;
         
-        // click numbers after clicking "="
-        // if going for new calculation after clicking "="
+        // After a operation if user clicks "=" button, it will
+        // run the following code. It will take new num1 to operate.
         if (clearDisplay && !(operator)) {
             display1.textContent = '';
             display2.textContent = '';
@@ -47,16 +47,14 @@ numButtons.forEach((button) => {
             clearDisplay = false;
         }
         
-        // click operator after clicking "="
-        // or chaining operators.
+        // Click operator after clicking "=" or chaining operators.
+        // If there is an operator, next input will go to num2.
         if (operator) {
             num2 += button.textContent;
-            num1 = operate(operator, Number(num1), Number(num2));
         } else {
             num1 += button.textContent;
         }
-        
-        
+         
         console.log("Num1: " + num1);
         console.log("Num2: " + num2);
     });
@@ -65,6 +63,15 @@ numButtons.forEach((button) => {
 operateButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display1.textContent += " " + button.textContent + " ";
+
+        // This check needs to be above the switch statement
+        // because we will operate on previous operator.
+        // Each operator presses will operate on previous numbers
+        // with previous operator.
+        if (operator) {
+            num1 = operate(operator, Number(num1), Number(num2));
+            display2.textContent = num1;
+        }
 
         switch (button.textContent) {
             case '+':
@@ -81,17 +88,19 @@ operateButtons.forEach((button) => {
                 break;
         }
 
+        // num2 will be empty after each operator press.
         num2 = '';
         
     });
 });
 
 equalButton.addEventListener('click', () => {
+    // num1 gets the operate value to continue chain operations.
+    num1 = operate(operator, Number(num1), Number(num2));
     display2.textContent = num1;
     
     operator = undefined;
     clearDisplay = true;
-    // num1 = "";
     num2 = "";
 });
 
