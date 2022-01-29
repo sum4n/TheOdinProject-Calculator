@@ -4,11 +4,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(0, 0, 0);
 }
 
 #main-frame {
-    border: 8px solid blueviolet;
-    height: 350px;
+    border: 2px solid rgb(92, 92, 92);
+    border-radius: 3%;
+    background-color: rgb(0, 0, 0);
+    height: 450px;
     width: 350px;
     display: flex;
     flex-direction: column;
@@ -17,7 +20,9 @@ body {
 }
 
 .display {
-    border: 1px solid coral;
+    /* border: 1px solid coral; */
+    background-color: rgb(92, 92, 92);
+    color: white;
     height: 40px;
     width: 300px;
     display: flex;
@@ -26,11 +31,15 @@ body {
 }
 
 #display1 {
-    font-size: large;
+    font-size: medium;
+}
+
+#display2 {
+    font-size: xx-large;
 }
 
 #buttons {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 250px;
     width: 300px;
     display: flex;
@@ -79,10 +88,36 @@ body {
 
 
 button {
+    background-color: rgb(65, 64, 64);
+    color:white;
     height: 30px;
-    width: 40px;
+    width: 65px;
+    border-radius: 16px;
+    font-weight: bold;
+    border: none;
 }
 
+.btn-operators button {
+    background-color: deepskyblue;
+    color: black;
+}
 
+.btn-equals button {
+    background-color: white;
+    color: black;
+}
 
+#btn-ac {
+    background-color: azure;
+    color: black;
+}
 
+.btn-operator {
+    background-color: deepskyblue;
+    color: black;
+}
+
+#main-display {
+    /* border: 2px solid rgb(92, 92, 92); */
+    margin-top: 8px;
+}

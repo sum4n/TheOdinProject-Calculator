@@ -114,7 +114,7 @@ operateButtons.forEach((button) => {
                 operator = subtract;
                 operatorSymbol = ' - ';
                 break;
-            case '*':
+            case 'x':
                 operator = multiply;
                 operatorSymbol = ' * ';
                 break;
