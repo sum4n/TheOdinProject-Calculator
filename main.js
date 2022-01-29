@@ -1,17 +1,21 @@
 const add = function(...args) {
-    return args.reduce((total, arg) => total + arg);
+    let answer =  args.reduce((total, arg) => total + arg);
+    return (Math.round(answer * 100) / 100);
 }
 
 const subtract = function(...args) {
-    return args.reduce((total, arg) => total - arg);
+    let answer = args.reduce((total, arg) => total - arg);
+    return (Math.round(answer * 100) / 100);
 }
 
 const multiply = function(...args) {
-    return args.reduce((total, arg) => total * arg);
+    let answer = args.reduce((total, arg) => total * arg);
+    return (Math.round(answer * 100) / 100);
 }
 
 const divide = function(...args) {
-    return args.reduce((total, arg) => total / arg);
+    let answer = args.reduce((total, arg) => total / arg);
+    return (Math.round(answer * 100) / 100);
 }
 
 const operate = function(operator, num1, num2) {
