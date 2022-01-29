@@ -32,6 +32,8 @@ const equalButton = document.querySelector('.btn-equals');
 
 const resetButton = document.querySelector("#btn-func>button");
 
+const dotButton = document.querySelector("#dot");
+
 let num1 = '';
 let num2 = '';
 let operator;
@@ -41,6 +43,9 @@ let operatorSymbol;
 
 numButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        if (button.textContent == '.'){
+            dotButton.disabled = true;
+        }
         display1.textContent += button.textContent;
         
         // After a operation if user clicks "=" button, it will
@@ -76,6 +81,8 @@ numButtons.forEach((button) => {
 
 operateButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        dotButton.disabled = false;
+
         display1.textContent += " " + button.textContent + " ";
 
         // This check needs to be above the switch statement
@@ -124,6 +131,7 @@ operateButtons.forEach((button) => {
 });
 
 equalButton.addEventListener('click', () => {
+    dotButton.disabled = false;
     // If = is used without entering operator return num1.
     if (!operator) {
         display2.textContent = num1;
