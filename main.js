@@ -32,6 +32,7 @@ let num1 = '';
 let num2 = '';
 let operator;
 let clearDisplay = false;
+let newCalc = false;
 
 numButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -39,12 +40,17 @@ numButtons.forEach((button) => {
         
         // After a operation if user clicks "=" button, it will
         // run the following code. It will take new num1 to operate.
-        if (clearDisplay && !(operator)) {
+        if (clearDisplay && newCalc) {
             display1.textContent = '';
             display2.textContent = '';
             num1 = '';
+            // num2 also resets on new calculation.
+            num2 = '';
             display1.textContent += button.textContent;
             clearDisplay = false;
+            // On new calculation operator gets reset, so that below
+            // if else statement runs correctly.
+            operator = undefined;
         }
         
         // Click operator after clicking "=" or chaining operators.
@@ -95,13 +101,20 @@ operateButtons.forEach((button) => {
 });
 
 equalButton.addEventListener('click', () => {
-    // num1 gets the operate value to continue chain operations.
+    // num1 gets the operate value to continue chain operations. and 
+    // repeated "=" presses.
     num1 = operate(operator, Number(num1), Number(num2));
     display2.textContent = num1;
     
-    operator = undefined;
+    // this variables will effect how the numButtons' function run.
+    newCalc = true;
     clearDisplay = true;
-    num2 = "";
+    
+    // Below variables will reset on new calculation's number input above.
+    // Because this enables repeated "=" presses and do calculations
+    // on results.
+    // operator = undefined;
+    // num2 = "";
 });
 
 resetButton.addEventListener('click', () => {
