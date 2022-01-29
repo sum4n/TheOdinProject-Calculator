@@ -74,7 +74,13 @@ operateButtons.forEach((button) => {
         // because we will operate on previous operator.
         // Each operator presses will operate on previous numbers
         // with previous operator.
-        if (operator) {
+
+        // If operators are pressed after "=" newCalc will be false.
+        if (operator && newCalc) {
+            // num1 = operate(operator, Number(num1), Number(num2));
+            display2.textContent = num1;
+            newCalc = false;
+        } else if (operator && !newCalc) {
             num1 = operate(operator, Number(num1), Number(num2));
             display2.textContent = num1;
         }
@@ -103,6 +109,7 @@ operateButtons.forEach((button) => {
 equalButton.addEventListener('click', () => {
     // num1 gets the operate value to continue chain operations. and 
     // repeated "=" presses.
+    // display1.textContent = num1 + ' + ' + num2;
     num1 = operate(operator, Number(num1), Number(num2));
     display2.textContent = num1;
     
