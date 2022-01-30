@@ -22,7 +22,7 @@ const operate = function(operator, num1, num2) {
     return operator(num1, num2);
 }
 
-const buttons = document.querySelectorAll('button');
+// const buttons = document.querySelectorAll('button');
 const display1 = document.querySelector("#display1>p");
 const display2 = document.querySelector("#display2>p");
 
@@ -42,9 +42,8 @@ let clearDisplay = false;
 let newCalc = false;
 let operatorSymbol;
 
-numButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (button.textContent == '.'){
+const numButtonFunc = (button) => {
+    if (button.textContent == '.') {
             dotButton.disabled = true;
         }
         display1.textContent += button.textContent;
@@ -74,9 +73,14 @@ numButtons.forEach((button) => {
             num1 += button.textContent;
         }
          
-        console.log("Num1: " + num1);
-        console.log("Num2: " + num2);
+        // console.log("Num1: " + num1);
+        // console.log("Num2: " + num2);
         // console.log(display1.textContent.length)
+    };
+
+numButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        numButtonFunc(button);
     });
 });
 
@@ -194,10 +198,10 @@ function delButtonFunc () {
         } 
 
         num2 = delDigit(num2);
-        console.log(num2);
+        // console.log(num2);
     } else {
         num1 = delDigit(num1);
-        console.log(num1);
+        // console.log(num1);
         display1.textContent = num1;
     }
 }
@@ -227,10 +231,9 @@ let operatorsObj = {
     111: operateButtons[3]
 };
 
-let numButtonArray = [""]
 
 window.addEventListener('keydown', (e) => {
-    console.log(e);
+    // console.log(e);
     if (e.keyCode === 13) {
         // enter key throws tantum, so e.preventDefault is needed.
         e.preventDefault()
@@ -241,8 +244,21 @@ window.addEventListener('keydown', (e) => {
         // divide key '/' opens search by default.
         e.preventDefault();
         operateButtonFunc(operatorsObj[e.keyCode]);
-    } //else if (e.key in numButtons) {
-    //     console.log(e.key);
-    //     console.log(numButtons[e.key]);
-    // }
+    } else if (e.key in numButtons) {
+        // console.log(e.key);
+        // console.log(numButtons[e.key]);
+        for (let i of numButtons.values()) {
+            if (i.textContent == e.key) {
+                numButtonFunc(i);
+            }
+        }
+    } else if (e.key == "." ) {
+        num1 = num1.toString();
+        num2 = num2.toString();
+        if (!num1.includes('.') && num2 == "") {
+            numButtonFunc(numButtons[10]);
+        } else if (operator && !num2.includes('.')) {
+            numButtonFunc(numButtons[10]);
+        }
+    }
 });
