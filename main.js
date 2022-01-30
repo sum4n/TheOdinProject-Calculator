@@ -76,7 +76,7 @@ numButtons.forEach((button) => {
          
         console.log("Num1: " + num1);
         console.log("Num2: " + num2);
-        console.log(display1.textContent.length)
+        // console.log(display1.textContent.length)
     });
 });
 
@@ -184,37 +184,32 @@ resetButton.addEventListener('click', () => {
 
 delButton.addEventListener('click', () => {
     if (operator) {
-
-        let numString = num2.toString();
-        numString = numString.slice(0, -1);
-        if (numString == '') {
-            num2 = '';
-        } else {
-            num2 = numString;
-        }
-
-        if (!(num2.includes('.'))) {
-            num2 = numString;
-            dotButton.disabled = false;
+        if (num2 != "") {
+            display1.textContent = display1.textContent.slice(0, -1);
         } 
-        
-        display1.textContent = display1.textContent.slice(0, -1);
 
+        num2 = delDigit(num2);
+        console.log(num2);
     } else {
-        let numString = num1.toString();
-        numString = numString.slice(0, -1);
-        if (numString == '') {
-            num1 = '';
-        } else {
-            num1 = numString;
-        }
-
-        if (!(num1.includes('.'))) {
-            num1 = numString;
-            dotButton.disabled = false;
-        } 
-        
+        num1 = delDigit(num1);
+        console.log(num1);
         display1.textContent = num1;
     }
     
 });
+
+function delDigit(num) {
+    let numString = num.toString();
+        numString = numString.slice(0, -1);
+        if (numString == '') {
+            num = '';
+        } else {
+            num = numString;
+        }
+
+        if (!(num.includes('.'))) {
+            num = numString;
+            dotButton.disabled = false;
+        } 
+    return num;
+}
