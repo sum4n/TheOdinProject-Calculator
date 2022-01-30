@@ -33,6 +33,7 @@ const equalButton = document.querySelector('.btn-equals');
 const resetButton = document.querySelector("#btn-func>button");
 
 const dotButton = document.querySelector("#dot");
+const delButton = document.querySelector("#btn-del");
 
 let num1 = '';
 let num2 = '';
@@ -122,7 +123,7 @@ operateButtons.forEach((button) => {
                 break;
             case 'x':
                 operator = multiply;
-                operatorSymbol = ' * ';
+                operatorSymbol = ' x ';
                 break;
             case '/':
                 operator = divide;
@@ -179,4 +180,41 @@ resetButton.addEventListener('click', () => {
     clearDisplay = false;
     newCalc = false;
     dotButton.disabled = false;
+});
+
+delButton.addEventListener('click', () => {
+    if (operator) {
+
+        let numString = num2.toString();
+        numString = numString.slice(0, -1);
+        if (numString == '') {
+            num2 = '';
+        } else {
+            num2 = numString;
+        }
+
+        if (!(num2.includes('.'))) {
+            num2 = numString;
+            dotButton.disabled = false;
+        } 
+        
+        display1.textContent = display1.textContent.slice(0, -1);
+
+    } else {
+        let numString = num1.toString();
+        numString = numString.slice(0, -1);
+        if (numString == '') {
+            num1 = '';
+        } else {
+            num1 = numString;
+        }
+
+        if (!(num1.includes('.'))) {
+            num1 = numString;
+            dotButton.disabled = false;
+        } 
+        
+        display1.textContent = num1;
+    }
+    
 });
